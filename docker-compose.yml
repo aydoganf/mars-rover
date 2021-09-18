@@ -1,0 +1,25 @@
+version: '3.4'
+
+services:
+  
+  mars-rover-api:
+    container_name: mars-rover-api
+    image: mars-rover-api
+    ports: 
+      - "8095:80"
+    networks:
+      - resolute
+      
+  redis:
+    container_name: redis
+    image: redis:6.2.5-alpine
+    ports:
+      - "6379:6379"
+    networks:
+      - resolute
+    command: redis-server --bind redis --timeout 10
+
+networks:
+  resolute:
+    external:
+      name: resolute
