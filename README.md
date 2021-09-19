@@ -5,11 +5,11 @@ This is about some secret NASA project. We are trying to land some rovers on the
 We will use a particular .NET API to comminicate with these rovers remotely. This API has some features to explain:
 
 API (mars-rover) has five end-points which are:
-* **GetMarsSurfaceInfo:** use it to get all rovers with their location and heading information on Mars surface
-* **LandTheRoverOnMars:** use it to land a single rover on Mars surface (jus landing, not any movement)
-* **SendMessageToMarsSurface:** use it to send some movement messages to Mars surface. 
-* **LandAndMove:** use it to land and move rovers on Mars surface
-* **ClearMarsSurface:** use it to destroy all rovers on Mars surface
+* **GetMarsSurfaceInfo:** `[GET] /marsSurface` use it to get all rovers with their location and heading information on Mars surface
+* **LandTheRoverOnMars:** `[POST] /marsSurface/land` use it to land a single rover on Mars surface (jus landing, not any movement)
+* **SendMessageToMarsSurface:** `[POST] /marsSurface/sendMessage` use it to send some movement messages to Mars surface. 
+* **LandAndMove:** `[POST] /marsSurface/landAndMove` use it to land and move rovers on Mars surface
+* **ClearMarsSurface:** `[DELETE] /marsSurface` use it to destroy all rovers on Mars surface
 
 ## Data Storing
 By default, project use `Redis` to store all information about Mars surface. If you want to store all information in txt file, you can configure it in `appsettings.json` file section `MarsSurfaceRepository:UseFile`. By default `UseRedis:true` is configured.
