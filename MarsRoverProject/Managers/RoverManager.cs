@@ -31,8 +31,6 @@ namespace MarsRoverProject.Managers
 
                     if (order.Equals('R'))
                         TurnRight(rover);
-
-                    continue;
                 }
 
                 if (order.Equals('M'))
