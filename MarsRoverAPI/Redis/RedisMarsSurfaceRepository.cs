@@ -99,5 +99,12 @@ namespace MarsRoverAPI.Redis
 
             return true;
         }
+
+        public void ClearSurface()
+        {
+            _redisCacheClient.GetDbFromConfiguration().AddAsync(
+                _appRedisConfiguration.MarsSurfaceRedisCacheKey,
+                new MarsSurfaceInfo(null, null));
+        }
     }
 }

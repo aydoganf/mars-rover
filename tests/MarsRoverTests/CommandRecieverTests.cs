@@ -110,10 +110,55 @@ namespace MarsRoverTests
             var marsSurfaceRepository = new MarsSurfaceRepository();
             var commandReciever = new CommandReciever(marsSurfaceRepository, new RoverManager(marsSurfaceRepository));
 
-            var surface = commandReciever.LandAndMoveOnMarsSurface(MarsSurfaceCommand.With(3, 3, "1 1 N", "MMRMMRM"));
+            var surface = commandReciever.LandAndMoveOnMarsSurface(MarsSurfaceCommand.With(
+                5,
+                5,
+                new List<(string, string)>()
+                {
+                    ("1 2 N", "LMLMLMLMM"),
+                    ("3 3 E", "MMRMMRMRRM")
+                })
+            );
 
-            Assert.Equal(3, surface.Rovers.First().Location.X);
-            Assert.Equal(2, surface.Rovers.First().Location.Y);
+            Assert.Equal(1, surface.Rovers.First().Location.X);
+            Assert.Equal(3, surface.Rovers.First().Location.Y);
+            Assert.Equal("N", surface.Rovers.First().Heading);
+
+            Assert.Equal(5, surface.Rovers.Last().Location.X);
+            Assert.Equal(1, surface.Rovers.Last().Location.Y);
+            Assert.Equal("E", surface.Rovers.Last().Heading);
+        }
+
+        [Fact]
+        public void Test_Should_Not_Move_To_Already_Used_Location_Via_LandAndMoveOnMarsSurface()
+        {
+            var marsSurfaceRepository = new MarsSurfaceRepository();
+            var commandReciever = new CommandReciever(marsSurfaceRepository, new RoverManager(marsSurfaceRepository));
+
+            Assert.Throws<AlreadyRoverExistsAtGivenLocationException>(() =>
+                commandReciever.LandAndMoveOnMarsSurface(MarsSurfaceCommand.With(
+                    x: 5,
+                    y: 5,
+                    commands: new List<(string, string)>()
+                    {
+                        ("0 0 N", "MMM"),
+                        ("1 1 N", "MMLM")
+                    })
+            ));
+        }
+
+        [Fact]
+        public void Test_Should_Throw_Out_Of_Selected_Border_Exception_When_Trying_To_Land_And_Move()
+        {
+            var marsSurfaceRepository = new MarsSurfaceRepository();
+            var commandReciever = new CommandReciever(marsSurfaceRepository, new RoverManager(marsSurfaceRepository));
+
+            Assert.Throws<RoverCouldNotLandToOutOfSelectedBorderException>(() =>
+                commandReciever.LandAndMoveOnMarsSurface(MarsSurfaceCommand.With(
+                    x: 1,
+                    y: 1,
+                    selectorCommand: "3 3 S",
+                    movementCommand: "MMLMM")));
         }
     }
 }

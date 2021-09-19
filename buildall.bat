@@ -2,7 +2,6 @@
 cls
 
 #dotnet restore MarsRoverSolution.sln
-NuGet.exe restore MarsRoverSolution.sln
 
 cd MarsRoverAPI
 dotnet restore

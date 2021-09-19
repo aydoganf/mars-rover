@@ -39,3 +39,5 @@ C:\Users\user\source\repos\mars-rover\MarsRoverAPI\obj\Release\net5.0\MarsRoverA
 C:\Users\user\source\repos\mars-rover\MarsRoverAPI\obj\Release\net5.0\ref\MarsRoverAPI.dll
 C:\Users\user\source\repos\mars-rover\MarsRoverAPI\obj\Release\net5.0\MarsRoverAPI.pdb
 C:\Users\user\source\repos\mars-rover\MarsRoverAPI\obj\Release\net5.0\MarsRoverAPI.genruntimeconfig.cache
+C:\Users\user\source\repos\mars-rover\MarsRoverAPI\bin\Release\net5.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\user\source\repos\mars-rover\MarsRoverAPI\bin\Release\net5.0\StackExchange.Redis.Extensions.AspNetCore.dll

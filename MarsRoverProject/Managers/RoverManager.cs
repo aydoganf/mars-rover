@@ -4,6 +4,7 @@ using MarsRoverProject.Contracts.Persistance;
 using MarsRoverProject.Domain;
 using MarsRoverProject.Exceptions;
 using MarsRoverProject.Extensions;
+using System;
 
 namespace MarsRoverProject.Managers
 {
@@ -21,6 +22,8 @@ namespace MarsRoverProject.Managers
             for (int i = 0; i < command.Message.Length; i++)
             {
                 var order = command.Message[i];
+                var previousX = rover.Location.X;
+                var previousY = rover.Location.Y;
 
                 if (order.IsIn('L', 'R'))
                 {
@@ -35,6 +38,12 @@ namespace MarsRoverProject.Managers
 
                 if (order.Equals('M'))
                     Move(rover);
+
+                _marsSurfaceRepository.UpdateLocationAndHeading(
+                    x: previousX,
+                    y: previousY,
+                    newLocation: rover.Location,
+                    newHeading: rover.Heading);
             }
 
             return rover;
@@ -54,38 +63,48 @@ namespace MarsRoverProject.Managers
 
         private static void TurnLeft(IRover rover)
         {
+            Console.WriteLine($"Rover {rover.Name} turning left.");
             rover.HeadingDegree += 90;
             ArrangeHeadingDegree(rover);
+            Console.WriteLine($"Heading is {rover.Heading}");
         }
 
         private static void TurnRight(IRover rover)
         {
+            Console.WriteLine($"Rover {rover.Name} turning left.");
             rover.HeadingDegree -= 90;
             ArrangeHeadingDegree(rover);
+            Console.WriteLine($"Heading is {rover.Heading}");
         }
 
         private void Move(IRover rover)
         {
+            Console.WriteLine($"Heading degree is {rover.HeadingDegree}");
+
             if (rover.HeadingDegree == 0)
             {
+                Console.WriteLine($"Checking location X:{rover.Location.X + 1} Y:{rover.Location.Y}");
                 CheckLocationIsEmpty(rover.Location.X + 1, rover.Location.Y);
                 rover.Location.X += 1;
             }
 
             if (rover.HeadingDegree == 90)
             {
+                Console.WriteLine($"Checking location X:{rover.Location.X} Y:{rover.Location.Y + 1}");
                 CheckLocationIsEmpty(rover.Location.X, rover.Location.Y + 1);
                 rover.Location.Y += 1;
             }
 
             if (rover.HeadingDegree == 180)
             {
+                Console.WriteLine($"Checking location X:{rover.Location.X - 1} Y:{rover.Location.Y}");
                 CheckLocationIsEmpty(rover.Location.X - 1, rover.Location.Y);
                 rover.Location.X -= 1;
             }
 
             if (rover.HeadingDegree == 270)
             {
+                Console.WriteLine($"Checking location X:{rover.Location.X} Y:{rover.Location.Y - 1}");
                 CheckLocationIsEmpty(rover.Location.X, rover.Location.Y - 1);
                 rover.Location.Y -= 1;
             }
@@ -98,7 +117,8 @@ namespace MarsRoverProject.Managers
 
             if (roverOnMars != null)
             {
-                throw new AlreadyRoverExistsAtGivenLocationException("There is already exists a rover at the given location!");
+                throw new AlreadyRoverExistsAtGivenLocationException(
+                    $"There is already exists a rover at the given location X: {x} - Y: {y}");
             }
         }
     }

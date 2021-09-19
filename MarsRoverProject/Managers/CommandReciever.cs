@@ -60,12 +60,6 @@ namespace MarsRoverProject.Managers
                 var rover = _roverManager.Command(
                     roverWithCommand.Rover, 
                     roverWithCommand.Command.GetMovementCommand());
-
-                _marsSurfaceRepository.UpdateLocationAndHeading(
-                    targetLocation.X,
-                    targetLocation.Y,
-                    rover.Location,
-                    rover.Heading);
             });
 
 
@@ -105,13 +99,11 @@ namespace MarsRoverProject.Managers
 
                 _marsSurfaceRepository.LandRover(rover);
 
+                Console.WriteLine($"Rover {rover.Name} landed to surfaca with location {rover.Location}");
+
                 _roverManager.Command(rover, command.GetMovementCommand());
 
-                _marsSurfaceRepository.UpdateLocationAndHeading(
-                    landingLocation.X,
-                    landingLocation.Y,
-                    rover.Location,
-                    rover.Heading);
+                Console.WriteLine($"Rover location is {rover.Location}");
             });
 
             return new MarsSurfaceInfo(_marsSurfaceRepository.GetRovers(), marsSurfaceCommand.Borders);
@@ -122,5 +114,9 @@ namespace MarsRoverProject.Managers
             return new MarsSurfaceInfo(_marsSurfaceRepository.GetRovers(), null);
         }
 
+        public void ClearMarsSurface()
+        {
+            _marsSurfaceRepository.ClearSurface();
+        }
     }
 }

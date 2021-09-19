@@ -98,5 +98,10 @@ namespace MarsRoverAPI.FileRepository
             WriteToFile(rovers);
             return true;
         }
+
+        public void ClearSurface()
+        {
+            File.WriteAllText(filePath, "");
+        }
     }
 }

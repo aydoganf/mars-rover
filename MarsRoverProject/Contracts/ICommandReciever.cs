@@ -14,5 +14,7 @@ namespace MarsRoverProject.Contracts
         IMarsSurfaceInfo LandAndMoveOnMarsSurface(MarsSurfaceCommand marsSurfaceCommand);
 
         IMarsSurfaceInfo GetSurfaceInfo();
+
+        void ClearMarsSurface();
     }
 }

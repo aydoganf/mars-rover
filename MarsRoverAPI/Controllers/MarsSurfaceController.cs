@@ -35,6 +35,8 @@ namespace MarsRoverAPI.Controllers
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex.StackTrace);
+
                 return new GetMarsSurfaceInfoResponse
                 {
                     IsSuccess = false,
@@ -131,6 +133,20 @@ namespace MarsRoverAPI.Controllers
                     IsSuccess = false,
                     ErrorMessage = ex.Message
                 };
+            }
+        }
+
+        [HttpDelete]
+        public void ClearMarsSurface()
+        {
+            try
+            {
+                _commandReciever.ClearMarsSurface();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Console.WriteLine(e.StackTrace);
             }
         }
     }

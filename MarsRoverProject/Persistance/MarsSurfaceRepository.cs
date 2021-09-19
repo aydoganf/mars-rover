@@ -17,6 +17,11 @@ namespace MarsRoverProject.Persistance
             //new Rover("curiosity 2", new Location(2, 2), 'S')
         };
 
+        public void ClearSurface()
+        {
+            _rovers.Clear();
+        }
+
         public Rover GetRover(int x, int y) => _rovers.FirstOrDefault(r => r.Location.X == x && r.Location.Y == y);
 
         public List<Rover> GetRovers() => _rovers.ToList();
@@ -41,5 +46,7 @@ namespace MarsRoverProject.Persistance
         {
             return true;
         }
+
+
     }
 }

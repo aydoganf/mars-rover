@@ -15,5 +15,7 @@ namespace MarsRoverProject.Contracts.Persistance
         bool LandRover(Rover rover);
 
         bool UpdateLocationAndHeading(int x, int y, Location newLocation, string newHeading);
+
+        void ClearSurface();
     }
 }
