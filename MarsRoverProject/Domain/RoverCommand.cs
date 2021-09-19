@@ -1,9 +1,8 @@
-﻿using MarsRoverProject.Contracts.Data;
-using System;
+﻿using System;
 
 namespace MarsRoverProject.Domain
 {
-    public class RoverCommand : IRoverCommand
+    public class RoverCommand
     {
         public string Selector { get; internal set; }
         public string Command { get; internal set; }
@@ -14,7 +13,7 @@ namespace MarsRoverProject.Domain
             Command = command;
         }
 
-        public ILocationInfo GetSelectorLocation()
+        public Location GetSelectorLocation()
         {
             string[] selectorArr = Selector.Split(' ');
 
@@ -51,7 +50,7 @@ namespace MarsRoverProject.Domain
             return selectorArr[2].ToString().ToUpper();
         }
 
-        public IMovementCommand GetMovementCommand()
+        public MovementCommand GetMovementCommand()
         {
             return new MovementCommand(Command);
         }

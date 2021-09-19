@@ -1,5 +1,4 @@
 ﻿using MarsRoverProject.Contracts;
-using MarsRoverProject.Contracts.Data;
 using MarsRoverProject.Contracts.Persistance;
 using MarsRoverProject.Domain;
 using MarsRoverProject.Exceptions;
@@ -17,7 +16,7 @@ namespace MarsRoverProject.Managers
             _marsSurfaceRepository = marsSurfaceRepository;
         }
 
-        public Rover Command(Rover rover, IMovementCommand command)
+        public Rover Command(Rover rover, MovementCommand command)
         {
             for (int i = 0; i < command.Message.Length; i++)
             {
@@ -49,7 +48,7 @@ namespace MarsRoverProject.Managers
             return rover;
         }
 
-        private static void ArrangeHeadingDegree(IRover rover)
+        private static void ArrangeHeadingDegree(Rover rover)
         {
             if (rover.HeadingDegree == 360)
             {
@@ -61,7 +60,7 @@ namespace MarsRoverProject.Managers
                 rover.HeadingDegree += 360;
         }
 
-        private static void TurnLeft(IRover rover)
+        private static void TurnLeft(Rover rover)
         {
             Console.WriteLine($"Rover {rover.Name} turning left.");
             rover.HeadingDegree += 90;
@@ -69,7 +68,7 @@ namespace MarsRoverProject.Managers
             Console.WriteLine($"Heading is {rover.Heading}");
         }
 
-        private static void TurnRight(IRover rover)
+        private static void TurnRight(Rover rover)
         {
             Console.WriteLine($"Rover {rover.Name} turning left.");
             rover.HeadingDegree -= 90;
@@ -77,7 +76,7 @@ namespace MarsRoverProject.Managers
             Console.WriteLine($"Heading is {rover.Heading}");
         }
 
-        private void Move(IRover rover)
+        private void Move(Rover rover)
         {
             Console.WriteLine($"Heading degree is {rover.HeadingDegree}");
 

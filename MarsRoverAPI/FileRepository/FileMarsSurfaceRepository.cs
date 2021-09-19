@@ -1,11 +1,9 @@
-﻿using MarsRoverProject.Contracts.Data;
-using MarsRoverProject.Contracts.Persistance;
+﻿using MarsRoverProject.Contracts.Persistance;
 using MarsRoverProject.Domain;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace MarsRoverAPI.FileRepository
 {

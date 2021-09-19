@@ -1,1 +1,0 @@
-{"Rovers":[{"Name":"curiosity 1","Location":{"X":3,"Y":3},"HeadingDegree":0,"Heading":"E"},{"Name":"curiosity 1","Location":{"X":2,"Y":0},"HeadingDegree":180,"Heading":"W"},{"Name":"curiosity 3","Location":{"X":-2,"Y":0},"HeadingDegree":180,"Heading":"W"}],"Borders":null}

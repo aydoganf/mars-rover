@@ -1,14 +1,13 @@
-﻿using MarsRoverProject.Contracts.Data;
-using MarsRoverProject.Contracts.Persistance;
+﻿using MarsRoverProject.Contracts.Persistance;
 using MarsRoverProject.Domain;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MarsRoverProject.Persistance
 {
+    /// <summary>
+    /// This repository is used for just testing casese
+    /// </summary>
     public class MarsSurfaceRepository : IMarsSurfaceRepository
     {
         private List<Rover> _rovers = new List<Rover>()

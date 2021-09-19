@@ -1,8 +1,6 @@
-﻿using MarsRoverProject.Contracts.Data;
-
-namespace MarsRoverProject.Domain
+﻿namespace MarsRoverProject.Domain
 {
-    public class MovementCommand : IMovementCommand
+    public class MovementCommand
     {
         public string Message { get; internal set; }
 

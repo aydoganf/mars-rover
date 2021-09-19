@@ -1,13 +1,9 @@
-﻿using MarsRoverProject.Contracts.Data;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MarsRoverProject.Domain
 {
-    public class MarsSurfaceCommand : IMarsSurfaceCommand
+    public class MarsSurfaceCommand
     {
         public Location Borders { get; set; }
 

@@ -1,9 +1,8 @@
-﻿using MarsRoverProject.Contracts.Data;
-using System;
+﻿using System;
 
 namespace MarsRoverProject.Domain
 {
-    public class Rover : IRover
+    public class Rover
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
@@ -18,7 +17,7 @@ namespace MarsRoverProject.Domain
             Location = new Location();
         }
 
-        public Rover(string name, ILocationInfo location, string heading)
+        public Rover(string name, Location location, string heading)
         {
             Id = Guid.NewGuid();
             Name = name;
@@ -68,23 +67,5 @@ namespace MarsRoverProject.Domain
         {
             return $"{Location.X} {Location.Y} {GetHeadingInfo()}";
         }
-
-        #region IRover Implementation
-
-        string IRover.Name => Name;
-
-        ILocationInfo IRover.Location => Location;
-
-        int IRover.HeadingDegree
-        {
-            get { return HeadingDegree; }
-            set { HeadingDegree = value; }
-        }
-
-        string IRover.Heading => GetHeadingInfo();
-
-        string IRover.ToString() => ToString();
-
-        #endregion
     }
 }
