@@ -33,3 +33,6 @@ If you run redis in docker but not API, you should configure redis hostname give
 
 ## Swagger Docs
 If you run the API with dotnet run, you can find swagger documantation at http://localhost:5000/swagger/index.html
+
+## Testing
+xUnit tests are written some cases
