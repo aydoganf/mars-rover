@@ -36,3 +36,6 @@ If you run the API with dotnet run, you can find swagger documantation at http:/
 
 ## Testing
 xUnit tests are written some cases
+
+## Depended Packages
+https://github.com/imperugo/StackExchange.Redis.Extensions
