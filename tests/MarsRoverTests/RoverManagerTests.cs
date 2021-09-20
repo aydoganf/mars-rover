@@ -3,6 +3,8 @@ using MarsRoverProject.Contracts.Data;
 using MarsRoverProject.Domain;
 using MarsRoverProject.Managers;
 using MarsRoverProject.Persistance;
+using MarsRoverTests.Poco;
+using MarsRoverTests.Theory;
 using System;
 using Xunit;
 
@@ -15,6 +17,24 @@ namespace MarsRoverTests
         public RoverManagerTests()
         {
             _roverManager = new RoverManager(new MarsSurfaceRepository());
+        }
+
+        [Theory, ClassData(typeof(ReLocationTheoryData))]
+        public void Test_Rover_Should_ReLocate_And_Rotate_Succesfully(ReLocateTestParameter parameter)
+        {
+            var marsSurfaceRepository = new MarsSurfaceRepository();
+            var roverManager = new RoverManager(marsSurfaceRepository);
+
+            var rover = new Rover(
+                "curiosity", 
+                new Location(parameter.InitialLocationX, parameter.InitialLocationY), 
+                parameter.InitialHeading);
+
+            roverManager.Command(rover, new MovementCommand(parameter.Command));
+
+            Assert.Equal(parameter.ExpectedLocationX, rover.Location.X);
+            Assert.Equal(parameter.ExpectedLocationY, rover.Location.Y);
+            Assert.Equal(parameter.ExpectedHeading, rover.Heading);
         }
 
         [Fact]
